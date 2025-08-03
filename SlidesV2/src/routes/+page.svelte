@@ -3,17 +3,25 @@
 // 🔧 Inställningar – ändra dessa
 const startIndex = 1;
 const endIndex = 4;
-const minutes = 0.5; // t.ex. 0.5 = 30 sekunder
+const minutes = 0.1; // t.ex. 0.5 = 30 sekunder
 
-// // 🔄 Automatisk växling
-// let currentIndex = startIndex;
-// const interval = minutes * 60 * 1000;
+// 🔄 Automatisk växling
+let currentIndex = startIndex;
+const interval = minutes * 60 * 1000;
 
-// setInterval(() => {
-// currentIndex++;
-// if (currentIndex > endIndex) currentIndex = startIndex;
-// document.getElementById("slide").src = `/slides/${currentIndex}.png`;
-// }, interval);
+onMount(() => {
+		const timer = setInterval(() => {
+			currentIndex++;
+			if (currentIndex > endIndex) currentIndex = startIndex;
+
+			const img = document.getElementById("slide");
+			if (img) {
+				img.src = `/slides/${currentIndex}.png`;
+			}
+		}, interval);
+
+		return () => clearInterval(timer); // städa upp om komponenten tas bort
+	});
 
 
 
