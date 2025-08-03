@@ -4,15 +4,15 @@ const startIndex = 1;
 const endIndex = 4;
 const minutes = 0.5; // t.ex. 0.5 = 30 sekunder
 
-// 🔄 Automatisk växling
-let currentIndex = startIndex;
-const interval = minutes * 60 * 1000;
+// // 🔄 Automatisk växling
+// let currentIndex = startIndex;
+// const interval = minutes * 60 * 1000;
 
-setInterval(() => {
-currentIndex++;
-if (currentIndex > endIndex) currentIndex = startIndex;
-document.getElementById("slide").src = `/slides/${currentIndex}.png`;
-}, interval);
+// setInterval(() => {
+// currentIndex++;
+// if (currentIndex > endIndex) currentIndex = startIndex;
+// document.getElementById("slide").src = `/slides/${currentIndex}.png`;
+// }, interval);
 
 
 
@@ -31,6 +31,10 @@ document.getElementById("slide").src = `/slides/${currentIndex}.png`;
     <header>
         <h1>"Företag Namn Går Här"</h1>
     </header>
+    <aside class="clock">
+        <h1>20 Augusti</h1>
+        <h1>20:30</h1>
+    </aside>
     <main>
     <img id="slide" src="/slides/1.png" alt="Slide image">
     </main>
@@ -68,7 +72,7 @@ document.getElementById("slide").src = `/slides/${currentIndex}.png`;
         background-color: rgb(37, 37, 37);   
         display: grid;
         grid-template-areas: 
-            "header header"
+            "header clock"
             "main aside1"
             "aside2 aside2";
         grid-template-rows: 1fr 5fr 2fr;
@@ -82,6 +86,23 @@ document.getElementById("slide").src = `/slides/${currentIndex}.png`;
         align-items: center;
         font-size: 5rem;
         
+    }
+    .clock {
+        grid-area: clock;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2rem;
+        align-items: center;
+        justify-content: center;
+        font-size: 2rem;
+        padding: 1.5%;
+        border: solid 0.1rem rgba(255, 255, 255, 0.2);
+    }
+    .clock h1 {
+        font-size: 3rem;
+        font-weight: bold;
+        width: fit-content;
+        height: fit-content;
     }
     main{
         grid-area: main;
