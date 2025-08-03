@@ -1,3 +1,4 @@
 requests
 beautifulsoup4
 smhi_open_data
+selenium

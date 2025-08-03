@@ -1,35 +1,29 @@
-import json
-import os
-
 # Required installs
-import requests
 from bs4 import BeautifulSoup
+from selenium import webdriver
 
-from svt import scrape
+def scrape(url):
+    driver = webdriver.Firefox()
+    driver.get(url)
+    soup = BeautifulSoup(driver.page_source, 'html.parser')
+    driver.quit()
+    return soup   
 
+def safe_find(soup: BeautifulSoup, name, _class):
+    text = soup.find(name, class_=_class)
+    if text:
+        return text
+    else:
+        ValueError(f"Could not find {name, _class} for {soup.name}.")
 
 def main():
     url = 'https://www.smhi.se/vader/prognoser-och-varningar/vaderprognos/q/Kinna/Mark/2700839'
     soup = scrape(url)
-    text = soup.find('div', class_='_forecastCard_103ri_126')
-    print(soup)
+    text = safe_find(soup, 'span', 'wptS1rOnly')
+    print(text.get_text(strip=True))
 
 if __name__ == "__main__":
-    #main()
+    main()
     pass
 
-from selenium import webdriver
-from bs4 import BeautifulSoup
-
-driver = webdriver.Chrome()
-driver.get("https://example.com/your-target-url")
-
-soup = BeautifulSoup(driver.page_source, 'html.parser')
-el = soup.find("span", class_="wptSrOnly")
-if el:
-    print(el.get_text(strip=True))
-else:
-    print("Element not found.")
-
-driver.quit()
 
