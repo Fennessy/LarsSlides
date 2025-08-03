@@ -1,4 +1,5 @@
 <script>
+    import { onMount } from 'svelte';
 // 🔧 Inställningar – ändra dessa
 const startIndex = 1;
 const endIndex = 4;
@@ -23,17 +24,40 @@ const minutes = 0.5; // t.ex. 0.5 = 30 sekunder
     //     "text": "Regeringen och SD föreslår lättnader i amortering"
     // }
  
+    let time = '';
+    let date = '';
 
+    function formatDate(now) {
+        const options = { day: 'numeric', month: 'long' };
+        return now.toLocaleDateString('sv-SE', options);
+    }
+    function formatTime(now) {
+        return now.toLocaleTimeString('sv-SE', {
+            hour: '2-digit',
+            minute: '2-digit',
+            hour12: false
+        });
+    }
 
+    function updateClock() {
+        const now = new Date();
+        date = formatDate(now);
+        time = formatTime(now);
+    }
 
+    onMount(() => {
+        updateClock();
+        const interval = setInterval(updateClock, 1000);
+        return () => clearInterval(interval);
+    });
 </script>
 <div class="wrapper">
     <header>
         <h1>"Företag Namn Går Här"</h1>
     </header>
     <aside class="clock">
-        <h1>20 Augusti</h1>
-        <h1>20:30</h1>
+        <h1>{date}</h1>
+        <h1>{time}</h1>
     </aside>
     <main>
     <img id="slide" src="/slides/1.png" alt="Slide image">
