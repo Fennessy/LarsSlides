@@ -1,7 +1,7 @@
 import json
 import os
 
-# requires installs
+# Required installs
 import requests
 from bs4 import BeautifulSoup
 
