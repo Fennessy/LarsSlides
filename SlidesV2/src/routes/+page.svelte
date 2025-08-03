@@ -13,6 +13,19 @@ currentIndex++;
 if (currentIndex > endIndex) currentIndex = startIndex;
 document.getElementById("slide").src = `/slides/${currentIndex}.png`;
 }, interval);
+
+
+
+
+    // Nyheter{
+    //     "titel": "Regeringen föreslår bolånelättnader",
+    //     "datum": "Regeringen föreslår bolånelättnader",
+    //     "text": "Regeringen och SD föreslår lättnader i amortering"
+    // }
+ 
+
+
+
 </script>
 <div class="wrapper">
     <header>
