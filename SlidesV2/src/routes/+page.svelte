@@ -133,7 +133,7 @@ onMount(() => {
         justify-content: center;
         font-size: 2rem;
         padding: 1.5%;
-        border: solid 0.1rem rgba(255, 255, 255, 0.2);
+        /* border: solid 0.1rem rgba(255, 255, 255, 0.2); */
     }
     .clock h1 {
         font-size: 5rem;
@@ -155,7 +155,7 @@ onMount(() => {
         font-size: 1.5rem;
         gap: 4rem;
         font-weight: bold;
-        border:  solid 0.1rem rgba(255, 255, 255, 0.2);
+        /* border:  solid 0.1rem rgba(255, 255, 255, 0.2); */
     }
     .Väder h1{
         font-size: 3rem;
