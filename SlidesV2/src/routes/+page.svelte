@@ -2,7 +2,7 @@
 // 🔧 Inställningar – ändra dessa
 const startIndex = 1;
 const endIndex = 4;
-const minutes = 0.1; // t.ex. 0.5 = 30 sekunder
+const minutes = 0.5; // t.ex. 0.5 = 30 sekunder
 
 // 🔄 Automatisk växling
 let currentIndex = startIndex;
@@ -47,9 +47,13 @@ document.getElementById("slide").src = `/slides/${currentIndex}.png`;
     <aside class="nyheter">
         <h1>Nyheter</h1>
         <ol>
-            <li id="tittle"><h2>Regeringen föreslår bolånelättnader</h2></li>
+            <li id="tittle">
+                <h2>Regeringen föreslår bolånelättnader</h2>
+                <h4>11:28</h4>
+            </li>
             <li><p>Regeringen och SD föreslår lättnader i amorteringskraven och höjt bolånetak, meddelar man på en pressträff. Tidöpartierna vill höja bolånetaket från 85 procent till 90 procent. Man vill också skrota amorteringskravet som infördes 2018. Det krävde ytterligare en procent amortering om lån överstiger 450 procent av brutto- inkomsten. Ett tidigare krav blir dock kvar. Det blir alltså ingen paus av alla krav - ett vallöfte från M. De nya reglerna ska träda i kraft den 1 april 2026. </p>
-            </li><li><p>Källa SVT</p></li>
+            </li>
+            <li><p>Källa SVT</p></li>
         </ol>
         
     </aside>
@@ -123,15 +127,28 @@ document.getElementById("slide").src = `/slides/${currentIndex}.png`;
         display: flex;
         flex-wrap: wrap;
     }
+    .nyheter li{
+        display: flex;
+        flex-direction: column;
+        
+    }
     .nyheter h2{
         font-size: 1.75rem;
         font-weight: bold;
         padding: .75rem 1rem;
         border: solid 0.1rem rgba(255, 255, 255, 0.2);
         width: fit-content;
-        height: fit-content;
+        
+    }
+    .nyheter h4{
+        font-size: .9rem;
+        font-weight: bold;
+        padding: .5rem .5rem;
+        padding-left: 0%;
+        width: fit-content;
+        height: 100%;
     }
     .nyheter p{
-        font-size: 1rem;
+        font-size: 1.2rem;
     }
 </style>
