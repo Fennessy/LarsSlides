@@ -4,8 +4,7 @@ import os
 # Required installs
 import requests
 from bs4 import BeautifulSoup
-
-
+    
 def scrape(link):
     try:
         response = requests.get(link, headers={"User-Agent": "Mozilla/5.0"}, timeout=5)
