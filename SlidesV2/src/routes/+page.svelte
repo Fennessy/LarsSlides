@@ -1,19 +1,19 @@
-<!-- <script>
-  // 🔧 Inställningar – ändra dessa
-  const startIndex = 1;
-  const endIndex = 4;
-  const minutes = 1.5; // t.ex. 0.5 = 30 sekunder
+<script>
+// 🔧 Inställningar – ändra dessa
+const startIndex = 1;
+const endIndex = 4;
+const minutes = 0.1; // t.ex. 0.5 = 30 sekunder
 
-  // 🔄 Automatisk växling
-  let currentIndex = startIndex;
-  const interval = minutes * 60 * 1000;
+// 🔄 Automatisk växling
+let currentIndex = startIndex;
+const interval = minutes * 60 * 1000;
 
-  setInterval(() => {
-    currentIndex++;
-    if (currentIndex > endIndex) currentIndex = startIndex;
-    document.getElementById("slide").src = `/slides/${currentIndex}.png`;
-  }, interval);
-</script> -->
+setInterval(() => {
+currentIndex++;
+if (currentIndex > endIndex) currentIndex = startIndex;
+document.getElementById("slide").src = `/slides/${currentIndex}.png`;
+}, interval);
+</script>
 <div class="wrapper">
     <header>
         <h1>"Företag Namn Går Här"</h1>
