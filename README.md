@@ -51,7 +51,7 @@ Sedan gå till valfri webläsare datorn som kör programmet till webadresse `htt
 2. Lägg in dina bilder där. Programmet börjar med `1.png` och visar uppåt i nummerordning till 4(går att ändra) (exempel: `1.png`, `2.png`, etc.)
 3. Bilderna måste vara i **.png-format** – andra format som `.jpg` fungerar inte.
 
-Behöver du konvertera bilder? Du kan använda som:  
+Behöver du konvertera bilder? Du kan använda:  
 [https://cloudconvert.com/png-converter]
 
 ### Ändra antal bilder och visningstid
