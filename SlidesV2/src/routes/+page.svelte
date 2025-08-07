@@ -1,5 +1,20 @@
 <script>
     import { onMount } from 'svelte';
+    let news = null;
+	let newsError = false;
+
+	onMount(async () => {
+		try {
+			const res = await fetch('/src/lib/svt_news/svt_news.json');
+			if (!res.ok) throw new Error('Nyhetsfilen kunde inte hämtas');
+			news = await res.json();
+		} catch (err) {
+			console.error('Fel vid hämtning av nyheter:', err);
+			newsError = true;
+		}
+	});
+    let newsIndex = 0
+
 // 🔧 Inställningar – ändra dessa
 const startIndex = 1;
 const endIndex = 4;
@@ -83,15 +98,22 @@ onMount(() => {
     </aside>
     <aside class="nyheter">
         <h1>Nyheter</h1>
-        <ol>
-            <li id="tittle">
-                <h2>Regeringen föreslår bolånelättnader</h2>
-                <h4>11:28</h4>
-            </li>
-            <li><p>Regeringen och SD föreslår lättnader i amorteringskraven och höjt bolånetak, meddelar man på en pressträff. Tidöpartierna vill höja bolånetaket från 85 procent till 90 procent. Man vill också skrota amorteringskravet som infördes 2018. Det krävde ytterligare en procent amortering om lån överstiger 450 procent av brutto- inkomsten. Ett tidigare krav blir dock kvar. Det blir alltså ingen paus av alla krav - ett vallöfte från M. De nya reglerna ska träda i kraft den 1 april 2026. </p>
-            </li>
-            <li id="source"><p>Källa SVT</p></li>
-        </ol>
+        {#if news}
+		<ol>
+			<li id="tittle">
+				<h2>{news[newsIndex].title}</h2>
+				<h4>{news[newsIndex].published}</h4>
+			</li>
+			<li>
+				<p>{@html news[newsIndex].body.replace(/\n/g, '<br>')}</p>
+			</li>
+			<li id="source"><p>Källa: SVT</p></li>
+		</ol>
+	{:else if newsError}
+		<p>Kunde inte hämta nyheter (fil saknas?)</p>
+	{:else}
+		<p>kan inte läsa in nyheter</p>
+	{/if}
         
     </aside>
 </div>

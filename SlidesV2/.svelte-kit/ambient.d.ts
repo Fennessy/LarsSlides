@@ -42,6 +42,7 @@ declare module '$env/static/private' {
 	export const ComSpec: string;
 	export const DriverData: string;
 	export const EDITOR: string;
+	export const EFC_11116: string;
 	export const FR_CUSTOMDATA_PATH: string;
 	export const GIT_ASKPASS: string;
 	export const HOME: string;
@@ -51,6 +52,7 @@ declare module '$env/static/private' {
 	export const INTEL_DEV_REDIST: string;
 	export const LANG: string;
 	export const LOCALAPPDATA: string;
+	export const LOCAL_GIT_DIRECTORY: string;
 	export const LOGONSERVER: string;
 	export const MIC_LD_LIBRARY_PATH: string;
 	export const NODE: string;
@@ -98,6 +100,7 @@ declare module '$env/static/private' {
 	export const PUBLIC: string;
 	export const PYDEVD_DISABLE_FILE_VALIDATION: string;
 	export const RUBYOPT: string;
+	export const SESSIONNAME: string;
 	export const SystemDrive: string;
 	export const SystemRoot: string;
 	export const TEMP: string;
@@ -115,7 +118,6 @@ declare module '$env/static/private' {
 	export const VSCODE_GIT_IPC_HANDLE: string;
 	export const VSCODE_INJECTION: string;
 	export const windir: string;
-	export const __COMPAT_LAYER: string;
 }
 
 /**
@@ -163,6 +165,7 @@ declare module '$env/dynamic/private' {
 		ComSpec: string;
 		DriverData: string;
 		EDITOR: string;
+		EFC_11116: string;
 		FR_CUSTOMDATA_PATH: string;
 		GIT_ASKPASS: string;
 		HOME: string;
@@ -172,6 +175,7 @@ declare module '$env/dynamic/private' {
 		INTEL_DEV_REDIST: string;
 		LANG: string;
 		LOCALAPPDATA: string;
+		LOCAL_GIT_DIRECTORY: string;
 		LOGONSERVER: string;
 		MIC_LD_LIBRARY_PATH: string;
 		NODE: string;
@@ -219,6 +223,7 @@ declare module '$env/dynamic/private' {
 		PUBLIC: string;
 		PYDEVD_DISABLE_FILE_VALIDATION: string;
 		RUBYOPT: string;
+		SESSIONNAME: string;
 		SystemDrive: string;
 		SystemRoot: string;
 		TEMP: string;
@@ -236,7 +241,6 @@ declare module '$env/dynamic/private' {
 		VSCODE_GIT_IPC_HANDLE: string;
 		VSCODE_INJECTION: string;
 		windir: string;
-		__COMPAT_LAYER: string;
 		[key: `PUBLIC_${string}`]: undefined;
 		[key: `${string}`]: string | undefined;
 	}
