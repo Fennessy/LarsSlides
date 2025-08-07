@@ -14,6 +14,17 @@
 		}
 	});
     let newsIndex = 0
+    const maxIndex = 2; 
+
+	const newsTimer = 0.75 * 60 * 1000;
+
+	onMount(() => {
+		const interval = setInterval(() => {
+			newsIndex = (newsIndex + 1) > maxIndex ? 0 : newsIndex + 1;
+		}, newsTimer);
+
+		return () => clearInterval(interval);
+	});
 
 // 🔧 Inställningar – ändra dessa
 const startIndex = 1;
