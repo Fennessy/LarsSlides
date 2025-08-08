@@ -1,6 +1,8 @@
 import os
 import re
 import json
+
+# Required installs
 from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.firefox.options import Options

@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  sveltefrontend:
+    build:
+      context: ./slidesV2
+      dockerfile: Dockerfile
+    container_name: sveltefrontend
+    ports:
+      - "5173:5173"
+    restart: unless-stopped
