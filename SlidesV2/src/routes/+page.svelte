@@ -1,11 +1,42 @@
 <script>
     import { onMount } from 'svelte';
-// 🔧 Inställningar – ändra dessa
-const startIndex = 1;
-const endIndex = 4;
-const minutes = 0.5; // t.ex. 0.5 = 30 sekunder
 
-// 🔄 Automatisk växling
+    // Nyheter setup
+    let news = null;
+	let newsError = false;
+
+    // Hämtar nyheter från en JSON-fil, måste starta pyton för skapa filen
+    // cd ./ ||CMD>| $python .\python\svt.py
+	onMount(async () => {
+		try {
+			const res = await fetch('/src/lib/svt_news/svt_news.json');
+			if (!res.ok) throw new Error('Nyhetsfilen kunde inte hämtas');
+			news = await res.json();
+		} catch (err) {
+			console.error('Fel vid hämtning av nyheter:', err);
+			newsError = true;
+		}
+	});
+    let newsIndex = 0
+    const maxIndex = 2; 
+
+	const newsTimer = 0.75 * 60 * 1000;
+	onMount(() => {
+		const interval = setInterval(() => {
+			newsIndex = (newsIndex + 1) > maxIndex ? 0 : newsIndex + 1;
+		}, newsTimer);
+
+		return () => clearInterval(interval);
+	});
+
+// Bildspel setup    
+// Inställningar - Bildspel -----------------------------------------
+const startIndex = 1; // Starta siffra (rekomderas 1)
+const endIndex = 4; // Sluta siffra
+const minutes = 0.5; //Tids intervalvet att byta bilder i minuter (t.ex. 0.5 = 30 sekunder)
+// Inställningar - Bildspel - slut -----------------------------------------
+
+
 let currentIndex = startIndex;
 const interval = minutes * 60 * 1000;
 
@@ -23,15 +54,7 @@ onMount(() => {
 		return () => clearInterval(timer); 
 	});
 
-
-
-
-    // Nyheter{
-    //     "titel": "Regeringen föreslår bolånelättnader",
-    //     "datum": "Regeringen föreslår bolånelättnader",
-    //     "text": "Regeringen och SD föreslår lättnader i amortering"
-    // }
- 
+    // Klocka setup
     let time = '';
     let date = '';
 
@@ -62,7 +85,6 @@ onMount(() => {
 <div class="wrapper">
     <header>
         <img src="/dahlenbergs.svg" alt="Dahlenbergs logo">
-        <!-- <h1>"Företag Namn Går Här"</h1> -->
     </header>
     <aside class="clock">
         <h1>{date}</h1>
@@ -74,7 +96,7 @@ onMount(() => {
     <aside class="Väder">
         <!-- Smhi data -->
     <!-- https://opendata.smhi.se/metobs/introduction -->
-        <h1>Väder</h1>
+        <h1>Vädert i Skene</h1>
         <h2>Luft tempratur: 4°</h2>
         <h2>Vindhastighet: 0,45 m/s</h2>
         <h2>Nederbörd "kod"</h2>
@@ -83,15 +105,22 @@ onMount(() => {
     </aside>
     <aside class="nyheter">
         <h1>Nyheter</h1>
-        <ol>
-            <li id="tittle">
-                <h2>Regeringen föreslår bolånelättnader</h2>
-                <h4>11:28</h4>
-            </li>
-            <li><p>Regeringen och SD föreslår lättnader i amorteringskraven och höjt bolånetak, meddelar man på en pressträff. Tidöpartierna vill höja bolånetaket från 85 procent till 90 procent. Man vill också skrota amorteringskravet som infördes 2018. Det krävde ytterligare en procent amortering om lån överstiger 450 procent av brutto- inkomsten. Ett tidigare krav blir dock kvar. Det blir alltså ingen paus av alla krav - ett vallöfte från M. De nya reglerna ska träda i kraft den 1 april 2026. </p>
-            </li>
-            <li id="source"><p>Källa SVT</p></li>
-        </ol>
+        {#if news}
+		<ol>
+			<li id="tittle">
+				<h2>{news[newsIndex].title}</h2>
+				<h4>{news[newsIndex].published}</h4>
+			</li>
+			<li>
+				<p>{@html news[newsIndex].body.replace(/\n/g, '<br>')}</p>
+			</li>
+			<li id="source"><p>Källa: SVT</p></li>
+		</ol>
+	{:else if newsError}
+		<p>Kunde inte hämta nyheter (fil saknas?)</p>
+	{:else}
+		<p>kan inte läsa in nyheter</p>
+	{/if}
         
     </aside>
 </div>
@@ -133,7 +162,7 @@ onMount(() => {
         justify-content: center;
         font-size: 2rem;
         padding: 1.5%;
-        border: solid 0.1rem rgba(255, 255, 255, 0.2);
+        /* border: solid 0.1rem rgba(255, 255, 255, 0.2); */
     }
     .clock h1 {
         font-size: 5rem;
@@ -155,7 +184,6 @@ onMount(() => {
         font-size: 1.5rem;
         gap: 4rem;
         font-weight: bold;
-        border:  solid 0.1rem rgba(255, 255, 255, 0.2);
     }
     .Väder h1{
         font-size: 3rem;
@@ -167,8 +195,6 @@ onMount(() => {
     .nyheter{
         grid-area: aside1; 
         padding: 5%;
-        /* display: grid;
-        grid-template-columns: 1fr 3fr; */
         font-size: 1.75rem;
         gap: 1rem;
         box-shadow: 0 0 0.5rem rgba(255, 255, 255, 0.1);
@@ -197,7 +223,6 @@ onMount(() => {
         padding: .75rem 1rem;
         border: solid 0.1rem rgba(255, 255, 255, 0.2);
         width: fit-content;
-        
     }
     .nyheter h4{
         font-size: 1.1rem;
@@ -208,6 +233,7 @@ onMount(() => {
         height: 100%;
     }
     .nyheter p{
+        /* Text storlek på nyheter ändras här */
         font-size: 1.3rem;
     }
     #source{
