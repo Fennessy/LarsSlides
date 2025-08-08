@@ -81,6 +81,26 @@ onMount(() => {
         const interval = setInterval(updateClock, 1000);
         return () => clearInterval(interval);
     });
+
+
+    // Väder setup
+
+    let weather = null;
+	let weatherError = false;
+
+    onMount(async () => {
+		try {
+			const res = await fetch('/src/lib/smhi/smhi.json');
+			if (!res.ok) throw new Error('Väder filen kunde inte hämtas');
+			weather = await res.json();
+		} catch (err) {
+			console.error('Fel vid hämtning av Väder:', err);
+			weatherError = true;
+		}
+	});
+
+
+
 </script>
 <div class="wrapper">
     <header>
@@ -96,12 +116,22 @@ onMount(() => {
     <aside class="Väder">
         <!-- Smhi data -->
     <!-- https://opendata.smhi.se/metobs/introduction -->
-        <h1>Vädert i Skene</h1>
+        <!-- <h1>Vädert i Skene</h1>
         <h2>Luft tempratur: 4°</h2>
         <h2>Vindhastighet: 0,45 m/s</h2>
         <h2>Nederbörd "kod"</h2>
         <h2>Nederbördsintensitet: 20 ml/s</h2>
-        <h2>Snödjup: 1m</h2>
+        <h2>Snödjup: 1m</h2> -->
+
+        {#if weather}
+             <h1>Vädert i Skene</h1>
+            <h2>{weather.weather_desc}</h2>
+            <img src="{weather.icon}" alt="">
+        {:else if weatherError}
+            <p>Kunde inte hämta väder (fil saknas?)</p>
+        {:else}
+            <p>kan inte läsa in väder</p>
+        {/if}
     </aside>
     <aside class="nyheter">
         <h1>Nyheter</h1>
