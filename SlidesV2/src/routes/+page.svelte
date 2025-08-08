@@ -1,8 +1,12 @@
 <script>
     import { onMount } from 'svelte';
+
+    // Nyheter setup
     let news = null;
 	let newsError = false;
 
+    // Hämtar nyheter från en JSON-fil, måste starta pyton för skapa filen
+    // cd ./ ||CMD>| $python .\python\svt.py
 	onMount(async () => {
 		try {
 			const res = await fetch('/src/lib/svt_news/svt_news.json');
@@ -17,7 +21,6 @@
     const maxIndex = 2; 
 
 	const newsTimer = 0.75 * 60 * 1000;
-
 	onMount(() => {
 		const interval = setInterval(() => {
 			newsIndex = (newsIndex + 1) > maxIndex ? 0 : newsIndex + 1;
@@ -26,12 +29,14 @@
 		return () => clearInterval(interval);
 	});
 
-// 🔧 Inställningar – ändra dessa
-const startIndex = 1;
-const endIndex = 4;
-const minutes = 0.5; // t.ex. 0.5 = 30 sekunder
+// Bildspel setup    
+// Inställningar - Bildspel -----------------------------------------
+const startIndex = 1; // Starta siffra (rekomderas 1)
+const endIndex = 4; // Sluta siffra
+const minutes = 0.5; //Tids intervalvet att byta bilder i minuter (t.ex. 0.5 = 30 sekunder)
+// Inställningar - Bildspel - slut -----------------------------------------
 
-// 🔄 Automatisk växling
+
 let currentIndex = startIndex;
 const interval = minutes * 60 * 1000;
 
@@ -49,15 +54,7 @@ onMount(() => {
 		return () => clearInterval(timer); 
 	});
 
-
-
-
-    // Nyheter{
-    //     "titel": "Regeringen föreslår bolånelättnader",
-    //     "datum": "Regeringen föreslår bolånelättnader",
-    //     "text": "Regeringen och SD föreslår lättnader i amortering"
-    // }
- 
+    // Klocka setup
     let time = '';
     let date = '';
 
@@ -88,7 +85,6 @@ onMount(() => {
 <div class="wrapper">
     <header>
         <img src="/dahlenbergs.svg" alt="Dahlenbergs logo">
-        <!-- <h1>"Företag Namn Går Här"</h1> -->
     </header>
     <aside class="clock">
         <h1>{date}</h1>
@@ -100,7 +96,7 @@ onMount(() => {
     <aside class="Väder">
         <!-- Smhi data -->
     <!-- https://opendata.smhi.se/metobs/introduction -->
-        <h1>Väder</h1>
+        <h1>Vädert i Skene</h1>
         <h2>Luft tempratur: 4°</h2>
         <h2>Vindhastighet: 0,45 m/s</h2>
         <h2>Nederbörd "kod"</h2>
@@ -188,7 +184,6 @@ onMount(() => {
         font-size: 1.5rem;
         gap: 4rem;
         font-weight: bold;
-        /* border:  solid 0.1rem rgba(255, 255, 255, 0.2); */
     }
     .Väder h1{
         font-size: 3rem;
@@ -200,8 +195,6 @@ onMount(() => {
     .nyheter{
         grid-area: aside1; 
         padding: 5%;
-        /* display: grid;
-        grid-template-columns: 1fr 3fr; */
         font-size: 1.75rem;
         gap: 1rem;
         box-shadow: 0 0 0.5rem rgba(255, 255, 255, 0.1);
@@ -230,7 +223,6 @@ onMount(() => {
         padding: .75rem 1rem;
         border: solid 0.1rem rgba(255, 255, 255, 0.2);
         width: fit-content;
-        
     }
     .nyheter h4{
         font-size: 1.1rem;
@@ -241,6 +233,7 @@ onMount(() => {
         height: 100%;
     }
     .nyheter p{
+        /* Text storlek på nyheter ändras här */
         font-size: 1.3rem;
     }
     #source{
