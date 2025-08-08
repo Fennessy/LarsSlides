@@ -1,3 +1,4 @@
 python/venv/
 python/__pycache__/
 SlidesV2/src/lib/svt_news/svt_news.json
+SlidesV2/src/lib/smhi/smhi.json
