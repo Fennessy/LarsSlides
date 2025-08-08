@@ -57,7 +57,7 @@ def getSmallNews(link):
         "section", class_="ArticleTopTimestamp__root___ST1S2"
     ).get_text()
     corpus = article.find("div", class_="InlineText__root___g8u-1")
-    body = "\n".join(
+    body = "\n\n".join(
         p.get_text(strip=True) for p in corpus.find_all("p") if p.get_text(strip=True)
     )
 
