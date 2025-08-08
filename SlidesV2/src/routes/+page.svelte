@@ -142,7 +142,7 @@ onMount(() => {
 				<h2>{news[newsIndex].title}</h2>
 				<h4>{news[newsIndex].published}</h4>
 			</li>
-			<li>
+			<li id="nyheterP">
 				<p>{@html news[newsIndex].body.replace(/\n/g, '<br>')}</p>
 			</li>
 			<li id="source"><p>Källa: SVT</p></li>
@@ -272,9 +272,13 @@ onMount(() => {
         width: fit-content;
         height: 100%;
     }
+    
     .nyheter p{
         /* Text storlek på nyheter ändras här */
         font-size: 1.3rem;
+    }
+    .nyheter br{
+        margin: 2rem;
     }
     #source{
         text-align: end;
