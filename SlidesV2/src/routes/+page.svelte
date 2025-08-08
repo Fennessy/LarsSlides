@@ -31,9 +31,9 @@
 
 // Bildspel setup    
 // Inställningar - Bildspel -----------------------------------------
-const startIndex = 1; // Starta siffra (rekomderas 1)
-const endIndex = 4; // Sluta siffra
-const minutes = 0.5; //Tids intervalvet att byta bilder i minuter (t.ex. 0.5 = 30 sekunder)
+const startIndex = 5; // Starta siffra (rekomderas 1)
+const endIndex = 5; // Sluta siffra
+const minutes = 0.1; //Tids intervalvet att byta bilder i minuter (t.ex. 0.5 = 30 sekunder)
 // Inställningar - Bildspel - slut -----------------------------------------
 
 
@@ -124,9 +124,10 @@ onMount(() => {
         <h2>Snödjup: 1m</h2> -->
 
         {#if weather}
-             <h1>Vädert i Skene</h1>
+            <h1>Vädret i Skene</h1>
+            <img src="{weather.icon}" alt="weather icon"> 
             <h2>{weather.weather_desc}</h2>
-            <img src="{weather.icon}" alt="">
+            
         {:else if weatherError}
             <p>Kunde inte hämta väder (fil saknas?)</p>
         {:else}
@@ -168,7 +169,7 @@ onMount(() => {
         grid-template-areas: 
             "clock header "
             "main aside1"
-            "aside2 aside2";
+            "aside2 aside1";
         grid-template-rows: 1fr 6fr 4fr;
         grid-template-columns: 3fr 1fr;
     }
@@ -210,10 +211,10 @@ onMount(() => {
         display: flex;
         flex-wrap: wrap;
         align-items: center;
-        justify-content: center;
         font-size: 1.5rem;
-        gap: 4rem;
+        gap: 2rem;
         font-weight: bold;
+        height: fit-content;
     }
     .Väder h1{
         font-size: 3rem;
@@ -222,21 +223,30 @@ onMount(() => {
         height: fit-content;
         margin: 0% 5%;
     }
+    .Väder img{
+        width: auto;
+        height: 5rem;
+        filter: drop-shadow(0 0 0.5rem rgba(255, 255, 255, 0.73));
+    }
     .nyheter{
         grid-area: aside1; 
-        padding: 5%;
+        padding: 0% 5%;
         font-size: 1.75rem;
         gap: 1rem;
-        box-shadow: 0 0 0.5rem rgba(255, 255, 255, 0.1);
+        box-shadow: inset 0 0 0.5rem rgba(255, 255, 255, 0.1);
         overflow: hidden;
+        /* background-color:rgb(37, 37, 37) ; */
+        background-image: linear-gradient(rgb(21, 21, 21), rgb(44, 44, 44));
     }
     .nyheter h1{
         font-size: 3rem;
         font-weight: bold;
-        padding: .75rem 1rem;
+        padding: .0rem 1rem;
+        padding-bottom: 2.5%;
         width: fit-content;
         height: fit-content;
         align-self: center;
+        justify-self: center;
     }
     .nyheter ol{
         display: flex;
