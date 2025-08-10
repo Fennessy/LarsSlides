@@ -46,6 +46,8 @@ def main():
     output_path = 'SlidesV2/src/lib/smhi/smhi.json'
 
     soup = scrape(url)
+
+    print(f"[100%] Fetched: {url}\n")
     span = safe_find(soup, 'span', 'wptSrOnly')
     img = safe_find(soup, 'img', '_weatherIcon_sq1e0_1 _weatherSymbol_103ri_159')
 

@@ -80,7 +80,7 @@ def main():
     with open(output_path, "w", encoding="utf-8") as f:
         json.dump(all_news, f, ensure_ascii=False, indent=2)
 
-    print(f"Saved {len(all_news)} articles to {output_path}")
+    print(f"Saved {len(all_news)} articles to {output_path}\n")
 
 
 if __name__ == "__main__":
