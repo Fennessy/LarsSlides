@@ -1,3 +1,5 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json
+
 version: '3.8'
 
 services:
@@ -10,9 +12,9 @@ services:
       - "5173:5173"
     restart: unless-stopped
 
-pythonbackend:
-  build:
-    context: .
-    dockerfile: python/Dockerfile
-  container_name: pythonbackend
-  restart: unless-stopped
+  pythonbackend:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    container_name: pythonbackend
+    restart: unless-stopped
