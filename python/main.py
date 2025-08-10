@@ -15,7 +15,10 @@ def setup_commands():
         sys.exit(1)
 
     for file in SCRIPTS_DIR.iterdir():
-        if file.is_file() and file.suffix == ".py" and file.name != Path(__file__).name:
+        if  file.is_file() \
+        and file.suffix == ".py" \
+        and file.name != Path(__file__).name:
+
             print(f"Found {file.name}\n")
             commands.append([
                 f"python{version}", str(file)

@@ -11,15 +11,20 @@ from selenium.common.exceptions import WebDriverException
 
 def scrape(url):
     options = Options()
-    options.headless = True  # Run in headless mode
+    options.add_argument("--headless")
+    options.add_argument("--disable-gpu")
+    options.add_argument("--no-sandbox")
+    
+    driver = None
     try:
-        driver = webdriver.Firefox(options=options)
+        driver = webdriver.Chrome(options=options)
         driver.get(url)
         html = driver.page_source
     except WebDriverException as e:
         raise RuntimeError(f'Error loading page: {e}')
     finally:
-        driver.quit()
+        if driver:
+            driver.quit()
     return BeautifulSoup(html, 'html.parser')
 
 
