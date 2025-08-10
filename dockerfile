@@ -7,6 +7,7 @@ RUN apt-get update && apt-get install -y \
     wget \
     curl \
     gnupg \
+    xvfb \
     && rm -rf /var/lib/apt/lists/*
 
 # Installera geckodriver
