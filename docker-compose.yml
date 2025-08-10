@@ -10,10 +10,9 @@ services:
       - "5173:5173"
     restart: unless-stopped
 
-  pythonbackend:
-    build:
-      context: ./python
-      dockerfile: Dockerfile
-    container_name: pythonbackend
-    restart: unless-stopped
-    entrypoint: ["sh", "-c", "while true; do python main.py; sleep 1800; done"]
+pythonbackend:
+  build:
+    context: .
+    dockerfile: python/Dockerfile
+  container_name: pythonbackend
+  restart: unless-stopped
