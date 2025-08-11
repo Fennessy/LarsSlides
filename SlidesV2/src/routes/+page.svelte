@@ -31,9 +31,9 @@
 
 // Bildspel setup    
 // Inställningar - Bildspel -----------------------------------------
-const startIndex = 5; // Starta siffra (rekomderas 1)
+const startIndex = 1; // Starta siffra (rekomderas 1)
 const endIndex = 5; // Sluta siffra
-const minutes = 0.1; //Tids intervalvet att byta bilder i minuter (t.ex. 0.5 = 30 sekunder)
+const minutes = 0.2; //Tids intervalvet att byta bilder i minuter (t.ex. 0.5 = 30 sekunder)
 // Inställningar - Bildspel - slut -----------------------------------------
 
 
