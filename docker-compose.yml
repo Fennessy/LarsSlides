@@ -1,18 +1,16 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json
 
-version: '3.8'
-
 services:
   sveltefrontend:
     build:
-      context: ./slidesV2
+      context: ./SlidesV2
       dockerfile: Dockerfile
     container_name: sveltefrontend
     ports:
       - "5173:5173"
     restart: unless-stopped
     volumes:
-      - slides_static:/app/static
+      - ./SlidesV2/static:/app/static
 
   pythonbackend:
     build:
@@ -21,7 +19,5 @@ services:
     container_name: pythonbackend
     restart: unless-stopped
     volumes:
-      - slides_static:/app/SlidesV2/static
+      - ./SlidesV2/static:/app/SlidesV2/static
 
-volumes:
-  slides_static:
