@@ -3,7 +3,7 @@ import time
 import subprocess
 from pathlib import Path
 
-MINUTES = 0.1
+MINUTES = 15
 SCRIPTS_DIR = Path("python")
 
 def setup_commands():

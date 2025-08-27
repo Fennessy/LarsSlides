@@ -9,7 +9,7 @@
     // cd ./ ||CMD>| $python .\python\svt.py
 	onMount(async () => {
 		try {
-			const res = await fetch('/src/lib/svt_news/svt_news.json');
+			const res = await fetch('/svt_news/svt_news.json');
 			if (!res.ok) throw new Error('Nyhetsfilen kunde inte hämtas');
 			news = await res.json();
 		} catch (err) {
@@ -33,7 +33,7 @@
 // Inställningar - Bildspel -----------------------------------------
 const startIndex = 1; // Starta siffra (rekomderas 1)
 const endIndex = 5; // Sluta siffra
-const minutes = 0.2; //Tids intervalvet att byta bilder i minuter (t.ex. 0.5 = 30 sekunder)
+const minutes = 0.05; //Tids intervalvet att byta bilder i minuter (t.ex. 0.5 = 30 sekunder)
 // Inställningar - Bildspel - slut -----------------------------------------
 
 
@@ -90,7 +90,7 @@ onMount(() => {
 
     onMount(async () => {
 		try {
-			const res = await fetch('/src/lib/smhi/smhi.json');
+			const res = await fetch('/smhi/smhi.json');
 			if (!res.ok) throw new Error('Väder filen kunde inte hämtas');
 			weather = await res.json();
 		} catch (err) {
