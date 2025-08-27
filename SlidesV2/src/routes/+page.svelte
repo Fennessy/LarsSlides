@@ -36,6 +36,7 @@ const endIndex = 5; // Sluta siffra
 const minutes = 0.05; //Tids intervalvet att byta bilder i minuter (t.ex. 0.5 = 30 sekunder)
 // Inställningar - Bildspel - slut -----------------------------------------
 
+let slide = "placeholder"
 
 let currentIndex = startIndex;
 const interval = minutes * 60 * 1000;
@@ -111,7 +112,7 @@ onMount(() => {
         <h1>{time}</h1>
     </aside>
     <main>
-    <img id="slide" src="/slides/1.png" alt="Slide">
+        <img id="slide" src="/slides/{slide}.png" alt="Slide">
     </main>
     <aside class="Väder">
         <!-- Smhi data -->
