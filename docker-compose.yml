@@ -11,6 +11,8 @@ services:
     ports:
       - "5173:5173"
     restart: unless-stopped
+    volumes:
+      - slides_static:/app/static
 
   pythonbackend:
     build:
@@ -18,3 +20,8 @@ services:
       dockerfile: Dockerfile
     container_name: pythonbackend
     restart: unless-stopped
+    volumes:
+      - slides_static:/app/SlidesV2/static
+
+volumes:
+  slides_static:
