@@ -49,7 +49,7 @@ def save_json(data: dict, filepath: str):
 
 def main():
     url = 'https://www.smhi.se/vader/prognoser-och-varningar/vaderprognos/q/Skene/Mark/2677749'
-    output_path = 'SlidesV2/src/lib/smhi/smhi.json'
+    output_path = 'SlidesV2/static/smhi/smhi.json'
 
     soup = scrape(url)
 

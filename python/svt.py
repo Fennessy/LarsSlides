@@ -74,7 +74,7 @@ def main():
         all_news.append(news)
         print(f"[{round(i/len(urls)*100)}%] Fetched: {sub_url}\n")
 
-    output_path = "SlidesV2/src/lib/svt_news/svt_news.json"
+    output_path = "SlidesV2/static/svt_news/svt_news.json"
     os.makedirs(os.path.dirname(output_path), exist_ok=True)
 
     with open(output_path, "w", encoding="utf-8") as f:
