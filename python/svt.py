@@ -1,5 +1,6 @@
 import json
 import os
+import re
 
 # Required installs
 import requests
@@ -23,12 +24,9 @@ def scrape(link):
 def getUrls(base_url):
     soup = scrape(base_url)
     urls = []
-    section = soup.find(
-        "section",
-        class_="MostImportant__root___KEF4K MostImportant__hideInMobile___D4hDD",
-    )
+    section = soup.find("section", class_=re.compile(r"^MostImportant__root___"))
     if section:
-        items = section.find_all("a", class_="MostImportant__link___ZTNTw")
+        items = section.find_all("a", class_=re.compile(r"^MostImportant__link___"))
         for item in items:
             relative_url = item.get("href")
             if relative_url:
@@ -46,17 +44,17 @@ def getUrls(base_url):
 def getSmallNews(link):
     soup = scrape(link)
     title, published, body = None, None, ""
-    article = soup.find("article", class_="TextArticle__root___ov1YN")
+    article = soup.find("article", class_=re.compile(r"^TextArticle__root___"))
     if not article:
         raise ValueError(f"Article not found at {link}")
 
-    title = article.find("h1", class_="TextArticle__heading___tebP2").get_text(
+    title = article.find("h1", class_=re.compile(r"^TextArticle__heading___")).get_text(
         strip=True
     )
     published = article.find(
-        "section", class_="ArticleTopTimestamp__root___ST1S2"
+        "section", class_=re.compile(r"^ArticleTopTimestamp__root___")
     ).get_text()
-    corpus = article.find("div", class_="InlineText__root___g8u-1")
+    corpus = article.find("div", class_=re.compile(r"^InlineText__root___"))
     body = "\n\n".join(
         p.get_text(strip=True) for p in corpus.find_all("p") if p.get_text(strip=True)
     )
